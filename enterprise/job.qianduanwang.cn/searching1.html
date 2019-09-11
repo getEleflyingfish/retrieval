@@ -32,8 +32,6 @@
         <!--  @change="change($event)"  -->
         <input name="" type="text" v-model="reqData.keyWord" class="listinput" placeholder="家庭" />
         <input name="search-btn" type="image" class="search-btn" src="./images/search-btn2.png" />
-
-
         <p style="height: 20px; margin-top: 36px;"> </p>
       </form>
     </div>
@@ -70,7 +68,6 @@
         <form action="" method="get" class="leftform">
           <input name="" type="text" v-model="reqData.text1" class="leftinput1" placeholder="円" />
           <input name="" type="text" v-model="reqData.text2" class="leftinput2" placeholder="円" />
-
         </form>
         <div class="list_leftit">キーワード</div>
         <ul class="leftext">
@@ -101,29 +98,24 @@
           1件〜100件を表示
         </div>
 
-        <!-- 
+
         <div class="index_textlist2_dl " v-for="item in listData">
-          <div class="dltext">{{  }}</div>
-          <div class="dlico"><a href="/recruit/info.html">{{  }}</a></div>
-          <h2><a href="/recruit/info.html"> {{  }}</a></h2>
+          <div class="dltext">{{ item.id }}</div>
+          <div class="dlico"><a href="/recruit/info.html">{{ item.industry }}</a></div>
+          <h2><a href="/recruit/info.html"> {{ item.title }}</a></h2>
           <p>
           </p>
           <dl>
             <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
             <dd>
-              <strong><a href="/recruit/info.html">{{  }}</a></strong>
-              <span>{{  }}</span>
-              <span>{{  }}</span>
-              <span>{{  }}</span>
+              <strong><a href="/recruit/info.html">{{ item.littleTitle }}</a></strong>
+              <span>{{ item.littleSite }}</span>
+              <span>{{ item.littleTimer }}</span>
+              <span>{{ item.littleIndustry }}</span>
             </dd>
           </dl>
-        </div> -->
-
-        <div class="index_textlist2_dl " v-for="item in listDataFalse">
-          <div class="dltext">{{  item.name}}</div>
-          <div class="dlico"><a href="/recruit/info.html">{{ item.count }}</a></div>
-          <h2><a href="/recruit/info.html"> {{  }}</a></h2>
         </div>
+
 
 
         <!--         <div class="index_textlist2_dl">
@@ -307,61 +299,45 @@
 
 
 
-        <div class="fenye">
-          <a href="#" @click="prevPage()">
-            < 前へ</a> <a href="#" class="btn-a" v-for="(item,index) in 9">{{item}}
-          </a>
-          …
-
-          <a href="#" @click="nextPage()">次へ ></a>
-        </div>
+        <div class="fenye"><a href="#">
+            < 前へ</a> <a href="#">1
+          </a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a
+            href="#">8</a><a href="#">9</a><a href="#">10</a>…<a href="#">次へ ></a></div>
       </div>
       <div class="clear"></div>
     </div>
   </div>
 
   <script>
-    let ntnWarp = [];
-    for (let i = 0; i < 50; i++) {
-      ntnWarp.push({
-        name: "第" + i + "瓶奶酪",
-        count: Math.random() * 100
-      })
-    }
+
+
 
     var list = new Vue({
       el: "#list_main",
       data: {
-        listData: [],//传过来的所有数据 职位列表
-        listDataFalse: ntnWarp,//暂时用这个数据
+        listData: [],//职位列表
         regionList: [],//地区列表
         companyList: [],//公司列表
-        text1: '',
-        text2: '',
         //筛选条件
         reqData: {
           region: '',
           company: '',
-          arr: [],  //可勾选列表
-          keyWord: '',  // 搜索关键字
-        },
-        revealData: [], // 页面需要展现的数据
-        page: 1,     // 现在的页数
-        pageSize: 10,  // 每页显示几个 
-        btnnum: 0,  // 一共多少页
-        listnum: [], // 生成切换页面的按钮用
-        startnum: 0, // 开始椰树
-        endnum: 1, // 结束椰树
-
-      },
-      methods: {
-        //请求筛选数据
-        getPageData() {
-          console.log(this.reqData)
+          text1: '',
+          text2: '',
+          arr: [],
+          keyWord: '',
+          page: 1,
+          pageSize: 10
         }
       },
+      methods:{
+        //请求筛选数据 
+          getPageData(){
+            console.log(this.reqData)
+          }
+       },
       watch: {
-        //监听筛选变化
+        //监听筛选变化 
         reqData: {
           handler() {
             this.getPageData()
@@ -369,12 +345,8 @@
           deep: true
         }
       }
-    })
-
-
-
+    })   
   </script>
-
 
   <!--底部-->
   <div id="footer">
